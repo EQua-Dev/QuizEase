@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:background="#4f0e0d0e"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:layout_weight="8"
+                android:gravity="start"
+                android:text="Course Code"
+                android:id="@+id/course_code"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="#4f0e0d0e"
+                android:text="add"
+                android:id="@+id/button_add_course"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/examimage"
+            android:scaleType="centerCrop"
+            android:id="@+id/course_image"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_alignParentBottom="true"
+    android:weightSum="10">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        android:textColor="@color/white"
+        android:background="#4f0e0d0e"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="start"
+        android:text="Course Title"
+        android:id="@+id/course_title"/>
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/white"
+        android:background="#4f0e0d0e"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/course_title"
+        android:text="3"
+        android:id="@+id/course_credit"/>
+
+
+</LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "570738471701",
+    "firebase_url": "https://online-quiz-system-493c4.firebaseio.com",
+    "project_id": "online-quiz-system-493c4",
+    "storage_bucket": "online-quiz-system-493c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570738471701:android:dd6b590b9126a6aa2eaf1c",
+        "android_client_info": {
+          "package_name": "com.androidstrike.quizease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570738471701-i8f5v6kq3fgl3c2ghugko5502mhcqgbv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.androidstrike.quizease",
+            "certificate_hash": "cf70314b217d7f4adefe287d1d5bb6d93f052000"
+          }
+        },
+        {
+          "client_id": "570738471701-767a6vjcjukas54j77ti1cvkqq094cou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP3RIp_xn6y0rYWyFUk9SBP8N1os6xBuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570738471701-767a6vjcjukas54j77ti1cvkqq094cou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
