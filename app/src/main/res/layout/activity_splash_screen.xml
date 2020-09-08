@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/pandaedit"
+        app:srcCompat="@drawable/pandaedit"
         android:layout_centerInParent="true"/>
 
 

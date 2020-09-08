@@ -13,7 +13,7 @@ import com.androidstrike.quizease.R;
 
 public class AddCoursesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtCourseCode, txtCourseTitile, txtCourseCredit;
+    public TextView txtCourseCode, txtCourseTitle, txtCourseCredit;
     public ImageView ivCourseImage;
 
     public Button addButton;
@@ -25,7 +25,7 @@ public class AddCoursesViewHolder extends RecyclerView.ViewHolder implements Vie
 
         txtCourseCode = itemView.findViewById(R.id.course_code);
         ivCourseImage = itemView.findViewById(R.id.course_image);
-        txtCourseTitile = itemView.findViewById(R.id.course_title);
+        txtCourseTitle = itemView.findViewById(R.id.course_title);
         txtCourseCredit = itemView.findViewById(R.id.course_credit);
         addButton = itemView.findViewById(R.id.button_add_course);
 

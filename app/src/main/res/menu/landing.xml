@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="200"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:iconTint="@color/white"
+        />
+
+    <item android:id="@+id/action_dark_mode"
+        android:title="Dark Mode"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_brightness"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:iconTint="@color/white"/>
+
 </menu>

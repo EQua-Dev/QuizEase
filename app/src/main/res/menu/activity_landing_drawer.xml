@@ -7,17 +7,29 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:iconTint="@color/white"
+            android:iconTint="@color/black"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_courses"
             android:icon="@drawable/ic_library_books_black_24dp"
-            android:iconTint="@color/white"
-            android:title="Courses" />
+            android:iconTint="@color/black"
+            android:title="Manage Courses" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_outline_black_24dp"
-            android:iconTint="@color/white"
+            android:iconTint="@color/black"
             android:title="Profile" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:iconTint="@color/black"
+            android:title="Exit"/>
     </group>
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:iconTint="@color/black"
+        android:title="Settings"/>
+
 </menu>

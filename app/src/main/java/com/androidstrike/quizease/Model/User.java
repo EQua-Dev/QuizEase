@@ -1,47 +1,39 @@
 package com.androidstrike.quizease.Model;
 
 public class User {
-    private String email, regNo, password, username;
+    private String Email, Password, RegNo;
 
     public User() {
     }
 
-    public User(String email, String regNo, String password) {
-        this.email = email;
-        this.regNo = regNo;
-        this.password = password;
-
+    public User(String email, String password, String regNo) {
+        Email = email;
+        Password = password;
+        RegNo = regNo;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getRegNo() {
-        return regNo;
-    }
-
-    public void setRegNo(String regNo) {
-        this.regNo = regNo;
+        Email = email;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getRegNo() {
+        return RegNo;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRegNo(String regNo) {
+        RegNo = regNo;
     }
 }
+

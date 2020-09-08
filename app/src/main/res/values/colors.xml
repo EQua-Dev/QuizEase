@@ -3,8 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorTextPrimary">#373737</color>
+    <color name="bgColor">#fafafa</color>
 
-    <color name="overlayBackground">#7f333639</color>
+
+    <color name="overlayBackground">#B0E0E6</color>
     <color name="overlayActionBar">#0d0e0d</color>
 
     <!--Color Codes Libary-->

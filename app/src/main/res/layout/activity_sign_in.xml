@@ -4,52 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/examimage"
-    tools:context=".SignIn">
-
+    android:background="@color/royalBlue"
+    tools:context=".ui.SignIn">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="250dp"
+        android:id="@+id/credentials_layout"
         android:padding="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_username_signIn"
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/text_input_username_signIn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:errorEnabled="true">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Username"-->
+<!--                android:text=""-->
+<!--                android:id="@+id/edt_username_signIn"-->
+<!--                android:inputType="textPersonName" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true">
+            android:textAlignment="center"
+            android:text="Welcome, Luomy"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/edt_username_signIn"
+            android:inputType="textPersonName" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username"
-                android:text="Luomy"
-                android:id="@+id/edt_username_signIn"
-                android:inputType="text" />
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/text_input_regNo_signIn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:counterEnabled="true"-->
+<!--            app:counterMaxLength="15"-->
+<!--            app:errorEnabled="true">-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Reg No"-->
+<!--                android:text="CST/2016/861"-->
+<!--                android:id="@+id/edt_reg_no_signIn"-->
+<!--                android:inputType="text" />-->
 
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_regNo_signIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:counterEnabled="true"
-            app:counterMaxLength="15"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Reg No"
-                android:text="CST/2016/861"
-                android:id="@+id/edt_reg_no_signIn"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,6 +88,17 @@
             android:background="@color/lightblue"/>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/credentials_layout"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Forgot Password?"
+        android:padding="8dp"
+        android:textColor="@color/blue"
+        android:id="@+id/tv_forgot_password"/>
 
     <ProgressBar
         android:layout_width="wrap_content"

@@ -4,20 +4,21 @@ public class Courses {
 
 //    model class to replicate the content of the Course table in the firebase
 
-    private String Credit, CourseCode, Image, Lecturer, Title, Id;
+    private String Credit, CourseCode, Image, Lecturer, Title, Id, isPending;
 
 
 
     public Courses() {
     }
 
-    public Courses(String credit,String code, String image, String lecturer, String title, String id) {
+    public Courses(String credit, String courseCode, String image, String lecturer, String title, String id, String isPending) {
         Credit = credit;
-        CourseCode = code;
+        CourseCode = courseCode;
         Image = image;
         Lecturer = lecturer;
         Title = title;
         Id = id;
+        this.isPending = isPending;
     }
 
     public String getCredit() {
@@ -66,5 +67,13 @@ public class Courses {
 
     public void setId(String id) {
         Id = id;
+    }
+
+    public String getIsPending() {
+        return isPending;
+    }
+
+    public void setIsPending(String isPending) {
+        this.isPending = isPending;
     }
 }
