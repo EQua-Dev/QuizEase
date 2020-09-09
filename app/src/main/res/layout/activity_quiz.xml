@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Quiz">
+    tools:context=".ui.quiz.Quiz">
 
     <TextView
         android:id="@+id/tv_time_display"
@@ -24,7 +24,7 @@
         android:layout_marginLeft="8dp"
         android:padding="16dp"
         android:orientation="horizontal"
-        android:weightSum="4"
+        android:weightSum="9"
         android:layout_below="@id/tv_time_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -41,7 +41,7 @@
 
         <TextView
             android:id="@+id/tv_question_display"
-            android:layout_weight="2"
+            android:layout_weight="6"
             android:padding="28dp"
             android:textColor="@color/black"
             android:text="Question Display"
@@ -72,10 +72,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@id/tv_mark_display">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/quest_info"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0"
+            android:textSize="36sp"
+            android:textColor="@android:color/white"
+            android:id="@+id/txt_score"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1/30"
+            android:textSize="36sp"
+            android:textColor="@android:color/white"
+            android:id="@+id/txt_total_question"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:max="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:id="@+id/layout_option_buttons"
         android:weightSum="4"
-        android:layout_below="@id/tv_mark_display"
+        android:layout_below="@id/quest_info"
         android:layout_margin="8dp"
         android:padding="16dp"
         android:orientation="vertical"
@@ -140,6 +184,9 @@
         android:background="@color/lightgreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
 
 
 </RelativeLayout>

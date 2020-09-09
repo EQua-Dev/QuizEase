@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Quiz"></activity>
-        <activity android:name=".EditProfilePhoneDialog" />
-        <activity android:name=".EditProfileEmailDialog" />
+        <activity android:name=".ui.quiz.Done"></activity>
+        <activity android:name=".ui.quiz.Rules" />
+        <activity android:name=".ui.quiz.Quiz" />
         <activity
             android:name=".SettingsActivity"
             android:configChanges="uiMode"

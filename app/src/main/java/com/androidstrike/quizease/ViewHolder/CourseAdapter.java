@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidstrike.quizease.Interface.ItemClickListener;
 import com.androidstrike.quizease.Model.RegisteredCourses;
-import com.androidstrike.quizease.Quiz;
+import com.androidstrike.quizease.ui.quiz.Quiz;
 import com.androidstrike.quizease.R;
 
 import java.util.ArrayList;
@@ -43,8 +43,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @Override
     public void onBindViewHolder(@NonNull final CourseViewHolder holder, int position) {
-//        todo here you will add an image icon that shines red if there is a pending test on that course
-//        todo for this, you will add in the course's json a column for updating pending quiz
 
         mPosition = position;
 

@@ -15,10 +15,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.androidstrike.quizease.Common.Common;
 import com.androidstrike.quizease.Database.Database;
+import com.androidstrike.quizease.Interface.GoClickListener;
+import com.androidstrike.quizease.Interface.ItemClickListener;
 import com.androidstrike.quizease.Model.PendingCourses;
 import com.androidstrike.quizease.Model.RegisteredCourses;
 import com.androidstrike.quizease.ViewHolder.PendingTestViewHolder;
+import com.androidstrike.quizease.ui.quiz.Quiz;
+import com.androidstrike.quizease.ui.quiz.Rules;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
@@ -58,11 +63,13 @@ public class TestPendingFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_test_pending, container, false);
 
-        Log.d("EQUA", "addToCourses: ");
+        Log.e("EQUA", "addToCourses: ");
 
         //Firebase init
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         pendingCourses = database.getReference("Tests/Pending/Course");
+        Log.e("EQUA", "addToCourses: 2");
+
 
         recycler_pending = v.findViewById(R.id.recycler_pending_tests);
         recycler_pending.setHasFixedSize(true);
@@ -73,9 +80,12 @@ public class TestPendingFragment extends Fragment {
         coordinatorLayout = v.findViewById(R.id.layout_coordinate);
 
         loadPendingTests();
+        Log.e("EQUA", "addToCourses: 3");
+
 
         return v;
     }
+
 
     private void loadPendingTests() {
         pendingCourseAdapter = new FirebaseRecyclerAdapter<PendingCourses, PendingTestViewHolder>(
@@ -83,9 +93,10 @@ public class TestPendingFragment extends Fragment {
         ) {
 
             @Override
-            protected void populateViewHolder(final PendingTestViewHolder pendingTestViewHolder, final PendingCourses pendingCourses, int i) {
+            protected void populateViewHolder(PendingTestViewHolder pendingTestViewHolder, final PendingCourses pendingCourses, int i) {
 
                 registeredCoursesList = new Database(getActivity()).getCourses();
+                Log.e("EQUA", "addToCourses: 4");
 
                 String regC = String.valueOf(registeredCoursesList);
 
@@ -93,10 +104,11 @@ public class TestPendingFragment extends Fragment {
                     pendingTestViewHolder.txtCourseTitle.setText(pendingCourses.getCourseTitle());
                     pendingTestViewHolder.txtCourseCode.setText(pendingCourses.getCourseCode());
 
-                    pendingTestViewHolder.goBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                Log.e("EQUA", "populateViewHolder: Courses Loaded");
 
+                    pendingTestViewHolder.setGoClickListener(new GoClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
                             progressBarPend.setVisibility(View.VISIBLE);
                             //write only registered course test
                             for (RegisteredCourses course : registeredCoursesList){
@@ -105,7 +117,9 @@ public class TestPendingFragment extends Fragment {
                                     Toast.makeText(getActivity(), "Can Write", Toast.LENGTH_SHORT).show();
                                     progressBarPend.setVisibility(View.GONE);
 
-                                    Intent intent = new Intent(getActivity(),Quiz.class);
+                                    Intent intent = new Intent(getActivity(), Rules.class);
+                                    Common.courseId = pendingCourseAdapter.getRef(position).getKey();
+                                    Common.courseName = pendingCourses.getCourseTitle();
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
@@ -122,10 +136,46 @@ public class TestPendingFragment extends Fragment {
                         }
 
                     });
-                }
 
-        };
+//                    pendingCourseAdapter.notifyDataSetChanged();
+
+
+//                        @Override
+//                        public void onClick(View v, int position, boolean isLong) {
+//
+//                            progressBarPend.setVisibility(View.VISIBLE);
+//                            //write only registered course test
+//                            for (RegisteredCourses course : registeredCoursesList){
+//                                if (course.getCourseTitle().equals(pendingCourses.getCourseTitle())){
+//                                    Log.e("EQUA", "onClick: "+pendingCourses.getCourseTitle() + " == "+course.getCourseTitle());
+//                                    Toast.makeText(getActivity(), "Can Write", Toast.LENGTH_SHORT).show();
+//                                    progressBarPend.setVisibility(View.GONE);
+//
+//                                    Intent intent = new Intent(getActivity(),Quiz.class);
+//                                    Common.courseId = pendingCourseAdapter.getRef(position).getKey();
+//                                    Common.courseName = pendingCourses.getCourseTitle();
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    startActivity(intent);
+//                                    break;
+//                                }else {
+//                                    Log.e("EQUA", "onClick: "+pendingCourses.getCourseTitle() + " != "+course.getCourseTitle());
+////                                    Toast.makeText(getActivity(), "Cannot Write", Toast.LENGTH_SHORT).show();
+//                                    Snackbar snackbar = Snackbar.make(coordinatorLayout, "Course not Registered!", Snackbar.LENGTH_LONG);
+//                                    snackbar.show();
+//                                }
+//
+//                            }
+//                            progressBarPend.setVisibility(View.INVISIBLE);
+                        }
+
+//                    });
+
+
+                };
 
         recycler_pending.setAdapter(pendingCourseAdapter);
+
+
     }
 }
