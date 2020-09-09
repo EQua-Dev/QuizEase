@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:text="Equa1234"
+                android:text="qqqq1111"
                 android:id="@+id/edt_password_signIn"
                 android:inputType="textPassword" />
 

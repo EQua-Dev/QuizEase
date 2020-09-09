@@ -13,7 +13,6 @@ import com.androidstrike.quizease.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSignUp, btnSignIn;
     private long backPressedTimeStartActivity;
 
     @Override
@@ -26,37 +25,23 @@ public class MainActivity extends AppCompatActivity {
 
         if (firstStart){
             signUp();
-//            setContentView(R.layout.activity_main);
-//            btnSignUp = findViewById(R.id.btn_signup);
-//            btnSignIn = findViewById(R.id.btn_signin);
         }else {
-//            setContentView(R.layout.activity_sign_in);
             Intent signInIntent = new Intent(MainActivity.this, SignIn.class);
             startActivity(signInIntent);
 
         }
-
-//        btnSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
             }
-//        });
-//    }
 
     public void signUp(){
-//        btnSignUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-                Intent signUpIntent = new Intent(MainActivity.this, SignUp.class);
-                startActivity(signUpIntent);
 
-                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
+         Intent signUpIntent = new Intent(MainActivity.this, SignUp.class);
+              startActivity(signUpIntent);
+
+         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+             SharedPreferences.Editor editor = prefs.edit();
                 editor.putBoolean("firstStart", false);
                 editor.apply();
             }
-//        });
-//    }
 
     @Override
     public void onBackPressed() {

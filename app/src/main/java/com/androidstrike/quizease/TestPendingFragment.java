@@ -18,12 +18,10 @@ import android.widget.Toast;
 import com.androidstrike.quizease.Common.Common;
 import com.androidstrike.quizease.Database.Database;
 import com.androidstrike.quizease.Interface.GoClickListener;
-import com.androidstrike.quizease.Interface.ItemClickListener;
 import com.androidstrike.quizease.Model.PendingCourses;
 import com.androidstrike.quizease.Model.RegisteredCourses;
 import com.androidstrike.quizease.ViewHolder.PendingTestViewHolder;
-import com.androidstrike.quizease.ui.quiz.Quiz;
-import com.androidstrike.quizease.ui.quiz.Rules;
+import com.androidstrike.quizease.ui.quiz.QuizActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
@@ -117,7 +115,7 @@ public class TestPendingFragment extends Fragment {
                                     Toast.makeText(getActivity(), "Can Write", Toast.LENGTH_SHORT).show();
                                     progressBarPend.setVisibility(View.GONE);
 
-                                    Intent intent = new Intent(getActivity(), Rules.class);
+                                    Intent intent = new Intent(getActivity(), QuizActivity.class);
                                     Common.courseId = pendingCourseAdapter.getRef(position).getKey();
                                     Common.courseName = pendingCourses.getCourseTitle();
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -137,45 +135,11 @@ public class TestPendingFragment extends Fragment {
 
                     });
 
-//                    pendingCourseAdapter.notifyDataSetChanged();
-
-
-//                        @Override
-//                        public void onClick(View v, int position, boolean isLong) {
-//
-//                            progressBarPend.setVisibility(View.VISIBLE);
-//                            //write only registered course test
-//                            for (RegisteredCourses course : registeredCoursesList){
-//                                if (course.getCourseTitle().equals(pendingCourses.getCourseTitle())){
-//                                    Log.e("EQUA", "onClick: "+pendingCourses.getCourseTitle() + " == "+course.getCourseTitle());
-//                                    Toast.makeText(getActivity(), "Can Write", Toast.LENGTH_SHORT).show();
-//                                    progressBarPend.setVisibility(View.GONE);
-//
-//                                    Intent intent = new Intent(getActivity(),Quiz.class);
-//                                    Common.courseId = pendingCourseAdapter.getRef(position).getKey();
-//                                    Common.courseName = pendingCourses.getCourseTitle();
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    startActivity(intent);
-//                                    break;
-//                                }else {
-//                                    Log.e("EQUA", "onClick: "+pendingCourses.getCourseTitle() + " != "+course.getCourseTitle());
-////                                    Toast.makeText(getActivity(), "Cannot Write", Toast.LENGTH_SHORT).show();
-//                                    Snackbar snackbar = Snackbar.make(coordinatorLayout, "Course not Registered!", Snackbar.LENGTH_LONG);
-//                                    snackbar.show();
-//                                }
-//
-//                            }
-//                            progressBarPend.setVisibility(View.INVISIBLE);
                         }
-
-//                    });
-
 
                 };
 
         recycler_pending.setAdapter(pendingCourseAdapter);
-
 
     }
 }

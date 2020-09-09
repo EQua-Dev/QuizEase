@@ -145,21 +145,17 @@ public class HomeActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.action_settings:
-                Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-                startActivity(settingsIntent);
-            case R.id.action_dark_mode:
-                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    //sets it to night mode
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
+        if (item.getItemId() == R.id.action_dark_mode) {
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            } else {
+                //sets it to night mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
 
-                finish();
-                // sets the activity to restart by creating an intent to itself
-                startActivity(new Intent(HomeActivity.this, HomeActivity.this.getClass()));
+            finish();
+            // sets the activity to restart by creating an intent to itself
+            startActivity(new Intent(HomeActivity.this, HomeActivity.this.getClass()));
         }
         return true;
     }

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidstrike.quizease.Interface.ItemClickListener;
 import com.androidstrike.quizease.Model.RegisteredCourses;
-import com.androidstrike.quizease.ui.quiz.Quiz;
+import com.androidstrike.quizease.ui.quiz.QuizActivity;
 import com.androidstrike.quizease.R;
 
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent openQuiz = new Intent(context, Quiz.class);
+                    Intent openQuiz = new Intent(context, QuizActivity.class);
                     openQuiz.putExtra("course_id", listData.get(mPosition).getCourseCode());
                 }
             });
