@@ -1,15 +1,17 @@
 package com.androidstrike.quizease.Model;
 
 public class User {
-    private String Email, Password, RegNo;
+    private String Email, Password, RegNo; //Phone;
 
     public User() {
     }
 
-    public User(String email, String password, String regNo) {
+    public User(String email, String password, String regNo) //String phone)
+     {
         Email = email;
         Password = password;
         RegNo = regNo;
+//        Phone = phone;
     }
 
     public String getEmail() {
@@ -35,5 +37,13 @@ public class User {
     public void setRegNo(String regNo) {
         RegNo = regNo;
     }
+
+//    public String getPhone() {
+//        return Phone;
+//    }
+//
+//    public void setPhone(String phone) {
+//        Phone = phone;
+//    }
 }
 

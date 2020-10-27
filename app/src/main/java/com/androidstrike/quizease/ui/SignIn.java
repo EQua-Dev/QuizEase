@@ -63,7 +63,7 @@ public class SignIn extends AppCompatActivity {
 
         email = preferences.getString(SignUp.prefUser, "");
 
-        userUsername.setText("Welcome, "+email);
+        userUsername.append("Welcome, "+email);
 
         progressBarSignIn = findViewById(R.id.progress_bar_signin);
 

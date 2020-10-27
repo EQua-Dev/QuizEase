@@ -1,6 +1,7 @@
 package com.androidstrike.quizease.fragments;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,8 +10,10 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -20,11 +23,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidstrike.quizease.Common.Common;
+import com.androidstrike.quizease.Model.UpdateProfile;
 import com.androidstrike.quizease.R;
+import com.androidstrike.quizease.ui.SignUp;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -37,6 +52,10 @@ public class Profile extends Fragment{
     private ImageView ivEdtProfileImage, profileImage;
     private TextView txtEmail, txtPhone, txtBoys;
     private FloatingActionButton fab;
+
+    FirebaseDatabase database;
+    DatabaseReference table_users;
+
 
     String newEmail;
     String newPhone;
@@ -73,8 +92,11 @@ public class Profile extends Fragment{
         txtPhone = view.findViewById(R.id.txt_phone_profile);
         profileImage = view.findViewById(R.id.profile_image);
         fab = view.findViewById(R.id.fab);
+        profileImage = view.findViewById(R.id.profile_image);
 
-        iv = view.findViewById(R.id.test_profile_image);
+
+        database = FirebaseDatabase.getInstance();
+        table_users = database.getReference("Contacts");
 
         setEmailAddress(newEmail);
         setPhoneNumber(newPhone);
@@ -84,23 +106,11 @@ public class Profile extends Fragment{
         ivEdtProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                takePhone();
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Upload Photo");
-                builder.setItems(addImage, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (which == 0){
-                            Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(takePicture, TAKE_PICTURE);
-                        }else if (which == 1){
-                            Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            startActivityForResult(pickPhoto, PICK_PICTURE);
-                        }
-                    }
-                });
-                builder.show();
+//
+                Intent picIntent = new Intent();
+                picIntent.setType("image/**");
+                picIntent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(picIntent, "Select Image"), PICK_PICTURE);
             }
         });
 
@@ -108,9 +118,7 @@ public class Profile extends Fragment{
             @Override
             public void onClick(View v) {
                 showPhoneAlertDialog();
-//                EditProfilePhoneDialog editProfilePhoneDialog = new EditProfilePhoneDialog();
-//                editProfilePhoneDialog.show(getFragmentManager(),"edit phone dialog");
-//                setPhoneNumber(phoneNumberEdited);
+//
             }
         });
 
@@ -118,9 +126,7 @@ public class Profile extends Fragment{
             @Override
             public void onClick(View v) {
                 showEmailAlertDialog();
-//                EditProfileEmailDialog editProfileEmailDialog = new EditProfileEmailDialog();
-//                editProfileEmailDialog.show(getFragmentManager(),"edit email dialog");
-//                setEmailAddress(emailAddressEdited);
+
             }
         });
 
@@ -130,73 +136,18 @@ public class Profile extends Fragment{
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch (resultCode){
-            case TAKE_PICTURE:
-                if (resultCode == RESULT_OK){
-                    Bundle extras = imageReturnedIntent.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    profileImage.setImageBitmap(imageBitmap);
-                }
-                break;
-            case PICK_PICTURE:
-                if (requestCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    profileImage.setImageURI(selectedImage);
-                }
-                break;
+//
+        if (requestCode == PICK_PICTURE){
+            ivEdtProfileImage.setVisibility(View.INVISIBLE);
+            profileImage.setImageURI(imageReturnedIntent.getData());
+//
+//            SharedPreferences preferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = preferences.edit();
+//            editor.putString(KEY_PHONE, updatedNumber);
+//            editor.apply();
         }
     }
 
-    //    public void takePhone() {
-//        Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        photoIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-//        photoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-//        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Pic.jpg");
-//
-////                photoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-////                        Uri.fromFile(photo));
-//                imageUri = Uri.fromFile(photo);
-//                startActivityForResult(photoIntent, TAKE_PICTURE);
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-////        super.onActivityResult(requestCode, resultCode, data);
-////        if (requestCode == 0){
-////            switch (requestCode){
-////                case getActivity().RESULT_OK:
-////                    if (photo.exists()){
-//////                        profileImage.setImageResource();
-////                    }else {
-////                        Toast.makeText(getActivity(), "Error Loading Image", Toast.LENGTH_SHORT).show();
-////                    }
-////                    break;
-////                case getActivity().RESULT_CANCELED:
-////                    break;
-////                default:
-////                    break;
-////            }
-////        }
-//        switch (requestCode){
-//            case TAKE_PICTURE:
-//                if (resultCode == Activity.RESULT_OK){
-//                    Uri selectedImage = imageUri;
-//                    requireActivity().getContentResolver().notifyChange(selectedImage, null);
-//                    ImageView imageView = ivEdtProfileImage;
-//                    ContentResolver cr = requireActivity().getContentResolver();
-//                    Bitmap bitmap;
-//                    try {
-//                        bitmap = MediaStore.Images.Media
-//                                .getBitmap(cr, selectedImage);
-//                        imageView.setImageBitmap(bitmap);
-//                        Toast.makeText(getActivity(), selectedImage.toString(), Toast.LENGTH_SHORT).show();
-//                    } catch (IOException e) {
-//                        Toast.makeText(getActivity(), "Failed to load", Toast.LENGTH_SHORT).show();
-//                        Log.e("Camera", e.toString());
-//                    }
-//                }
-//        }
-//    }
 
     private void showPhoneAlertDialog() {
         AlertDialog.Builder phoneAlertDialog = new AlertDialog.Builder(getActivity());
@@ -215,12 +166,44 @@ public class Profile extends Fragment{
         phoneAlertDialog.setPositiveButton("DONE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                newPhone = edtPhoneNew.getText().toString();
+                final ProgressDialog mDialog = new ProgressDialog(getActivity());
+                mDialog.setMessage("Please wait...");
+                mDialog.show();
+
+                UpdateProfile updateProfile = new UpdateProfile(
+                        Common.onlyUser,
+                        edtPhoneNew.getText().toString(),
+                        Common.currentUser.getEmail()
+                        );
+
+                String updatedNumber = edtPhoneNew.getText().toString();
+
+                SharedPreferences userPreferences;
+                userPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                String userName = userPreferences.getString(SignUp.prefUser, "");
+
+                table_users.child(userName).setValue(updateProfile);
+                mDialog.dismiss();
+                Toast.makeText(getActivity(), "phone number Updated", Toast.LENGTH_SHORT).show();
+
+
+//                newPhone = edtPhoneNew.getText().toString();
+//                if (newPhone.isEmpty() || newPhone.length() != 10 ){
+//                    edtPhoneNew.setError("Enter a Valid phone number");
+//                    edtPhoneNew.requestFocus();
+//                }else {
+//                    PhoneAuthProvider.getInstance()
+//                            .verifyPhoneNumber(
+//                                    newPhone, 60, TimeUnit.SECONDS, requireActivity(),phoneAuthCallbacks
+//                            );
+//                    FirebaseAuth.getInstance()
+//                            .getCurrentUser().updatePhoneNumber()
+//                }
                 SharedPreferences preferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString(KEY_PHONE, newPhone);
+                editor.putString(KEY_PHONE, updatedNumber);
                 editor.apply();
-                setPhoneNumber(newPhone);
+                setPhoneNumber(updatedNumber);
             }
         });
         phoneAlertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {

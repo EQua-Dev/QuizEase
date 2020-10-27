@@ -20,4 +20,9 @@
         android:name="com.androidstrike.quizease.fragments.Home"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.androidstrike.quizease.fragments.ContactLecturer"
+        android:label="Contact Lecturer"
+        tools:layout="@layout/fragment_contact_lecturer" />
 </navigation>

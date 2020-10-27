@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity {
     private TextInputLayout confirmPassword;
     private TextInputLayout regNo;
     private ProgressBar progressBarSignUp;
-    public static final String prefUser = "username";
+    public static String prefUser = Common.onlyUser;
 
     EditText uemail, uuserName, upassword, uconfirmPassword, uregNo;
 
@@ -204,11 +204,13 @@ public class SignUp extends AppCompatActivity {
                         User user = new User(uemail.getText().toString(), upassword.getText().toString(), uregNo.getText().toString());
                         table_user.child(uuserName.getText().toString()).setValue(user);
 
+                        Common.onlyUser= uuserName.getText().toString();
+
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString(prefUser,"");
+                        editor.putString(prefUser,Common.onlyUser);
                         editor.apply();
 
-                        Common.onlyUser = preferences.getString(prefUser, "");
+//                        Common.onlyUser = preferences.getString(prefUser, "");
 
                         Toast.makeText(SignUp.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
                         Intent afterSignUp = new Intent(SignUp.this, SignIn.class);

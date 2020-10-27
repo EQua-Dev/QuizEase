@@ -88,7 +88,12 @@ public class HomeActivity extends AppCompatActivity implements SharedPreferences
         txtFullName= headerView.findViewById(R.id.txtFullName);
         txtRegNo = headerView.findViewById(R.id.txtRegNo);
 
-        txtFullName.setText(Common.currentUser.getEmail());
+        SharedPreferences userPreferences;
+        userPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String userName = userPreferences.getString(SignUp.prefUser, "");
+
+
+        txtFullName.setText(userName);
 //        txtRegNo.setText(user.getRegNo());
         txtRegNo.setText(Common.currentUser.getRegNo());
 
